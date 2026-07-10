@@ -61,6 +61,10 @@ A few sections still carry bracketed placeholders pending real details:
 ## Brand
 
 Colors, type, logo mark, taglines, and voice follow the Evoghen Brand
-Identity System v2.0. Primary tagline ("Innovation Built Forward.") appears
-in the footer/letterhead-style spots; the homepage hero uses the newer
-"Evolving Government. Generating Impact." line from the site copy draft.
+Identity System v2.0. The primary/secondary taglines ("Innovation Built
+Forward." / "Generate. Deliver. Evolve.") appear together in the homepage
+hero and the primary tagline alone in the footer/letterhead-style spots.
+The logo mark (nav, footer, favicon) is reconstructed from the vector
+paths in the brand system PDF — three concentric hexagons plus dashed
+connector spokes — rather than the circular placeholder used in the
+earlier one-pager/capability-statement drafts.
