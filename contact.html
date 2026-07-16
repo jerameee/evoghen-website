@@ -63,8 +63,12 @@
           <div class="section-title">Send Us a Message</div>
           <p style="margin-bottom:24px;">Tell us a little about your inquiry and we'll get back to you within one business day.</p>
 
-          <!-- Form service placeholder: replace action with your Formspree (or similar) endpoint -->
-          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <!-- Netlify Forms: detected automatically at deploy time via name + data-netlify -->
+          <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none">
+              <label>Leave this field blank: <input name="bot-field"></label>
+            </p>
             <div class="form-grid">
               <div class="form-field">
                 <label for="name">Full Name</label>
@@ -99,7 +103,6 @@
             <button type="submit" class="btn btn-primary mt-24">Send Message</button>
             <div id="form-status" class="form-status" role="status"></div>
           </form>
-          <div class="note-box no-print mt-24"><strong>📌 Setup:</strong> This form posts to a placeholder Formspree endpoint. Create a free form at <em>formspree.io</em> and replace <code>YOUR_FORM_ID</code> in the form's <code>action</code> attribute with your real form ID.</div>
         </div>
 
         <div>

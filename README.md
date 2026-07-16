@@ -32,22 +32,35 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Contact form setup
+## Contact form
 
-The contact form (`contact.html`) posts to a placeholder endpoint:
+The contact form (`contact.html`) uses [Netlify Forms](https://docs.netlify.com/forms/setup/) —
+no third-party service or API key needed. Netlify detects the form
+automatically at deploy time because it's static HTML with a `name` and
+`data-netlify="true"` attribute, plus a matching hidden `form-name` field.
+Submissions show up in the Netlify dashboard under **Site → Forms**, and can
+be forwarded to email from there (Site settings → Forms → Form notifications).
+A hidden honeypot field (`bot-field`) provides basic spam filtering.
 
-```html
-<form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-```
+This only works once the site is actually deployed on Netlify — opening the
+HTML files locally or serving them with a plain static server (e.g. for
+local testing) will not receive form submissions, since detection and
+handling happen on Netlify's infrastructure.
 
-To make it functional:
+## Deploying on Netlify
 
-1. Create a free form at [formspree.io](https://formspree.io) (or a similar
-   service, e.g. Web3Forms).
-2. Replace `YOUR_FORM_ID` in `contact.html` with your real form ID/endpoint.
-
-Until configured, submitting the form shows a message directing visitors to
-email `contact@evoghen.com` directly.
+1. Sign up / log in at [app.netlify.com](https://app.netlify.com) (GitHub
+   login is easiest).
+2. **Add new site → Import an existing project → GitHub** → select
+   `jerameee/evoghen-website` → branch `main`.
+3. Build settings: leave the build command blank and set the publish
+   directory to `.` (also captured in `netlify.toml`, so Netlify should
+   pick this up automatically).
+4. Deploy — Netlify gives you a `https://<random-name>.netlify.app` URL
+   immediately.
+5. To use `evoghen.com`: **Site settings → Domain management → Add a
+   custom domain**, enter `evoghen.com`, then follow Netlify's DNS
+   instructions at your registrar (Namecheap).
 
 ## Personalizing content
 
