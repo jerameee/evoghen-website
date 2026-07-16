@@ -19,29 +19,22 @@ document.addEventListener('DOMContentLoaded', function () {
     el.textContent = new Date().getFullYear();
   });
 
-  // Contact form submission (Formspree-compatible)
+  // Contact form submission (Netlify Forms AJAX pattern)
   var form = document.getElementById('contact-form');
   if (form) {
     var status = document.getElementById('form-status');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var action = form.getAttribute('action') || '';
-
-      if (!action || action.indexOf('YOUR_FORM_ID') !== -1) {
-        status.textContent = 'Form endpoint not yet configured — see README for setup instructions. In the meantime, email contact@evoghen.com directly.';
-        status.className = 'form-status visible error';
-        return;
-      }
 
       var submitBtn = form.querySelector('button[type="submit"]');
       var originalLabel = submitBtn.textContent;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
-      fetch(action, {
+      fetch('/', {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
       })
         .then(function (response) {
           if (response.ok) {
